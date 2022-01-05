@@ -1,7 +1,7 @@
 package com.devsimple.citiesapi.controller;
 
-import com.devsimple.citiesapi.model.Country;
-import com.devsimple.citiesapi.service.CountryService;
+import com.devsimple.citiesapi.model.State;
+import com.devsimple.citiesapi.service.StateService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/countries")
+@RequestMapping("/states")
 @AllArgsConstructor
-public class CountryController {
+public class StateController {
 
-    private CountryService countryService;
+    private StateService stateService;
 
     @GetMapping
-    public Page<Country> listCountries(Pageable page){
-        return countryService.listAll(page);
+    public Page<State> listCountries(Pageable page){
+        return stateService.listAll(page);
     }
 
-    @GetMapping("/{countryId}")
-    public Country getOne(@PathVariable Long countryId){
-        return countryService.getOne(countryId);
+    @GetMapping("/{stateId}")
+    public State getOne(@PathVariable Long stateId){
+        return stateService.getOne(stateId);
     }
 }
