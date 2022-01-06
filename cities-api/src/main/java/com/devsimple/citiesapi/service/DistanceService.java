@@ -30,14 +30,7 @@ public class DistanceService {
         this.cityRepository = cityRepository;
     }
 
-    /**
-     * 1st option
-     *
-     * @param city1 Long
-     * @param city2 Long
-     * @param unit EarthRadius
-     * @return Double
-     */
+
     public Double distanceUsingMath(final Long city1, final Long city2, final EarthRadius unit) {
         log.info("distanceUsingMath({}, {}, {})", city1, city2, unit);
         final List<City> cities = cityRepository.findAllById((Arrays.asList(city1, city2)));
@@ -48,26 +41,12 @@ public class DistanceService {
         return doCalculation(location1[0], location1[1], location2[0], location2[1], unit);
     }
 
-    /**
-     * 2nd option
-     *
-     * @param city1
-     * @param city2
-     * @return
-     */
+
     public Double distanceByPointsInMiles(final Long city1, final Long city2) {
         log.info("nativePostgresInMiles({}, {})", city1, city2);
         return cityRepository.distanceByPoints(city1, city2);
     }
 
-    /**
-     * 3rd option
-     *
-     * @param city1
-     * @param city2
-     * @param unit
-     * @return
-     */
     public Double distanceUsingPoints(final Long city1, final Long city2, final EarthRadius unit) {
         log.info("distanceUsingPoints({}, {}, {})", city1, city2, unit);
         final List<City> cities = cityRepository.findAllById((Arrays.asList(city1, city2)));
@@ -78,13 +57,6 @@ public class DistanceService {
         return doCalculation(p1.getX(), p1.getY(), p2.getX(), p2.getY(), unit);
     }
 
-    /**
-     * 4th option
-     *
-     * @param city1
-     * @param city2
-     * @return
-     */
     public Double distanceByCubeInMeters(Long city1, Long city2) {
         log.info("distanceByCubeInMeters({}, {})", city1, city2);
         final List<City> cities = cityRepository.findAllById((Arrays.asList(city1, city2)));
@@ -106,12 +78,6 @@ public class DistanceService {
         return earthRadius.getValue() * c;
     }
 
-    /**
-     * Serviço de proximidade por raio
-     * @param cityId
-     * @param radius
-     * @return
-     */
     public List<City> nearby(Long cityId, Double radius) {
         Optional<City> city = cityRepository.findById(cityId);
 
